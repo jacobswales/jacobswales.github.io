@@ -1,5 +1,40 @@
+:root {
+  --bg: #d7fdfc;
+  --fg: #000000;
+  --link: #0000ee; 
+  --visited: #551a8b;
+}
+@media (prefers-color-scheme: dark) {
+  :root { 
+    --bg: #505050; 
+    --fg: #ffffff; 
+    --link: #d7fdfc; 
+    --visited: #d074fa; }
+}
+:root:has(#mode_dark:checked)  {
+  --bg: #505050; 
+  --fg: #ffffff; 
+  --link: #d7fdfc; 
+  --visited: #d074fa; 
+}
+:root:has(#mode_light:checked) { 
+  --bg: #d7fdfc;
+  --fg: #000000;
+  --link: #0000ee; 
+  --visited: #551a8b;
+}
+
+a:link { 
+  color: var(--link); 
+}
+
+a:visited { 
+  color: var(--visited); 
+}
+
 body {
-  background-color: #d7fdfc;
+  background-color: var(--bg);
+  color: var(--fg);
   text-align: center;
   align-items: center;
   width: 50%;
@@ -16,3 +51,42 @@ ul {
 code {
   font-family: monospace;
 }
+
+
+/* Toggle button based on https://www.freecodecamp.org/news/how-to-build-a-dark-mode-toggle-without-javascript/ */
+/* style of the toggle */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* hide the input */
+.theme-toggle input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.theme-toggle label {
+    width: 28px; height: 28px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+
+label[for="mode_light"] {
+  border-bottom-color: currentColor;
+}
+@media (prefers-color-scheme: dark) {
+  label[for="mode_dark"] {
+    border-bottom-color: currentColor;
+  }
+}
+:root:has(#mode_dark:checked) label[for="mode_dark"] { border-bottom-color: currentColor; }
+:root:has(#mode_dark:checked) label[for="mode_light"] { border-bottom-color: transparent; }
+:root:has(#mode_light:checked) label[for="mode_light"] { border-bottom-color: currentColor; }
+:root:has(#mode_light:checked) label[for="mode_dark"] { border-bottom-color: transparent; }

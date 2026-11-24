@@ -82,6 +82,9 @@ label[for="mode_light"] {
   border-bottom-color: currentColor;
 }
 @media (prefers-color-scheme: dark) {
+  label[for="mode_light"] {
+    border-bottom-color: transparent;
+  }
   label[for="mode_dark"] {
     border-bottom-color: currentColor;
   }
